@@ -1,0 +1,51 @@
+{
+  "id": "a76eff9c-5aa2-46ee-a47f-6f9703865ece",
+  "uid": "ratione-aut-consequatur",
+  "type": "posts",
+  "data": {
+    "title": "expedite e-business initiatives",
+    "subtitle": "synthesize rich models",
+    "author": "drive efficient bandwidth",
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1593642633279-1796119d5482?w=900&h=500&fit=crop"
+    },
+    "content": [
+      {
+        "heading": "incubate ubiquitous relationships",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Laborum dolor sunt aliqua proident nisi eiusmod nisi esse.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "synergize B2C e-tailers",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Magna pariatur sint do proident. Excepteur cillum culpa aute ut.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "implement rich vortals",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Cillum excepteur ullamco cupidatat magna labore.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}
