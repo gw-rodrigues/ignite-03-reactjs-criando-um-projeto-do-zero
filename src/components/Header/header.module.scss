@@ -1,1 +1,12 @@
-// TODO
+.headerContainer{
+    max-width: 700px;
+    height: 6.5625rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+    .headerLogo{
+        max-width: 238.62px;
+        height: auto;
+    }
+}
