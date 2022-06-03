@@ -1,1 +1,22 @@
-// TODO
+.info{
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+
+    div {
+        display: flex;
+        align-items: center;
+        .icon{
+            width: 20px;
+            height: 20px;
+        }
+        .description{
+            margin-left: .5rem;
+            color: var(--gray-300);
+            font-size: .875rem;
+        }
+        &+div{
+            margin-left:1.5rem;
+        }
+    }
+}
