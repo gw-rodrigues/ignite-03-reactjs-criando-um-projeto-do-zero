@@ -4,6 +4,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import { useState } from 'react';
+import axios from 'axios';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
@@ -28,17 +29,43 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
+function formatResults(posts): Post[] {
+  return posts.map(post => {
+    return {
+      uid: post.uid,
+      first_publication_date: post.first_publication_date
+        ? format(new Date(post.first_publication_date), 'dd MMM yyyy', {
+            locale: ptBR,
+          })
+        : null,
+      data: {
+        title: post.data.title,
+        subtitle: post.data.subtitle,
+        author: post.data.author,
+      },
+    };
+  });
+}
+
 export default function Posts({
   postsPagination: { next_page, results },
 }: HomeProps): JSX.Element {
   const [posts, setPosts] = useState<Post[]>(results);
-  async function handleLoadMore() {
-    try {
-      const next_post = await fetch(next_page);
-      console.log(next_post);
-    } catch (error) {
-      return new Error(error);
+  const [nextPage, setNextPage] = useState<string | null>(next_page);
+  function handleLoadMore(): void {
+    if (!nextPage) {
+      return;
     }
+    axios
+      .get(next_page)
+      .then(({ data }) => {
+        setNextPage(data.next_page);
+        const nextPosts = formatResults(data.results);
+        setPosts([...posts, ...nextPosts]);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   return (
@@ -77,28 +104,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const response = await prismic.getByType('posts', {
     pageSize: 3,
   });
-
-  const next_page = response.next_page ? response.next_page : null;
-  const results = response.results.map(post => {
-    return {
-      uid: post.uid,
-      first_publication_date: post.first_publication_date
-        ? format(new Date(post.first_publication_date), 'dd MMM yyyy', {
-            locale: ptBR,
-          })
-        : null,
-      data: {
-        title: post.data.title,
-        subtitle: post.data.subtitle,
-        author: post.data.author,
-      },
-    };
-  });
-
+  const results = formatResults(response.results);
   return {
     props: {
       postsPagination: {
-        next_page,
+        next_page: response.next_page,
         results,
       },
     },
