@@ -1,7 +1,8 @@
 import { GetStaticProps } from 'next';
-import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
+import { FiCalendar, FiUser } from 'react-icons/fi';
 import { useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
@@ -51,11 +52,11 @@ export default function Posts({
     <main className={styles.container}>
       {posts.map(post => (
         <article key={post.uid} className={styles.content}>
-          <header>
-            <a href={`/post/${post.uid}`} className={styles.title}>
+          <Link href={`/post/${post.uid}`}>
+            <a className={styles.title}>
               <h1>{post.data.title}</h1>
             </a>
-          </header>
+          </Link>
           <p className={styles.subtitle}>{post.data.subtitle}</p>
           <div className={commonStyles.info}>
             <div>
