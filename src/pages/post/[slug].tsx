@@ -39,9 +39,7 @@ export default function Post({ post }: PostProps): JSX.Element {
       </div>
       <main className={styles.container}>
         <article className={styles.content}>
-          <header>
-            <h1 className={styles.title}>{post.data.title}</h1>
-          </header>
+          <h1 className={styles.title}>{post.data.title}</h1>
           <div className={commonStyles.info}>
             <div>
               <FiCalendar className={commonStyles.icon} />
@@ -58,11 +56,17 @@ export default function Post({ post }: PostProps): JSX.Element {
               <p className={commonStyles.description}>4 min</p>
             </div>
           </div>
-          <div className={styles.body}>
-            {post.data.content.map(body => {
-              return <h2>{body.heading}</h2>;
-            })}
-          </div>
+          {post.data.content.map(postContent => {
+            return (
+              <>
+                <h2 className={styles.postHeading}>{postContent.heading}</h2>
+                <div
+                  className={styles.postContent}
+                  dangerouslySetInnerHTML={{ __html: postContent.body }}
+                />
+              </>
+            );
+          })}
         </article>
       </main>
     </>
