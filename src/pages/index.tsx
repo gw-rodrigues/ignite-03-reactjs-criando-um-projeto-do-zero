@@ -40,6 +40,7 @@ export default function Posts({
     axios
       .get(nextPage)
       .then(({ data }) => {
+        console.log(data.results);
         setNextPage(data.next_page);
         const nextPosts = FormatPosts(data.results);
         setPosts([...posts, ...nextPosts]);
@@ -74,7 +75,7 @@ export default function Posts({
       ))}
       <button
         onClick={handleLoadMore}
-        className={!nextPage && styles.disable}
+        className={nextPage ? '' : styles.disable}
         type="button"
       >
         <p>Carregar mais posts</p>
