@@ -56,15 +56,17 @@ export default function Post({ post }: PostProps): JSX.Element {
               <p className={commonStyles.description}>4 min</p>
             </div>
           </div>
-          {post.data.content.map(postContent => {
+          {post.data.content.map(({ heading, body }) => {
             return (
-              <>
-                <h2 className={styles.postHeading}>{postContent.heading}</h2>
+              <div key={heading}>
+                <h2 className={styles.postHeading}>{heading}</h2>
                 <div
                   className={styles.postContent}
-                  dangerouslySetInnerHTML={{ __html: postContent.body }}
+                  dangerouslySetInnerHTML={{
+                    __html: body.toString(),
+                  }}
                 />
-              </>
+              </div>
             );
           })}
         </article>
