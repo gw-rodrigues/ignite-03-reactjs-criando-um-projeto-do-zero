@@ -1,3 +1,14 @@
+.banner {
+  width: 100vw;
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
 .container {
   max-width: 720px;
   margin: 5rem auto;
