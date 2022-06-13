@@ -43,7 +43,6 @@ export default function Post({ post }: PostProps): JSX.Element {
       <main className={styles.container}>
         <article className={styles.content}>
           <h1 className={styles.title}>{post.data.title}</h1>
-          <p>{post.data.title}</p>
           <div className={commonStyles.info}>
             <div>
               <FiCalendar className={commonStyles.icon} />
@@ -65,7 +64,16 @@ export default function Post({ post }: PostProps): JSX.Element {
             </div>
             <div>
               <FiClock className={commonStyles.icon} />
-              <p className={commonStyles.description}>4 min</p>
+              <p className={commonStyles.description}>
+                {post.data.content.reduce((acc, { heading, body }) => {
+                  const numberWords = [
+                    ...heading.split(/\s+/),
+                    ...RichText.asText(body).split(/\s+/),
+                  ];
+                  return acc + Math.ceil(numberWords.length / 200);
+                }, 0)}
+                {' min'}
+              </p>
             </div>
           </div>
           {post.data.content.map(({ heading, body }) => {
