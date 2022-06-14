@@ -2,10 +2,9 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { RichText } from 'prismic-dom';
-import { useEffect, useState } from 'react';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
-import { setTimeout } from 'timers';
-
+import * as prismicH from '@prismicio/helpers';
+import { useRouter } from 'next/router';
 import { getPrismicClient } from '../../services/prismic';
 
 import commonStyles from '../../styles/common.module.scss';
@@ -33,9 +32,15 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps): JSX.Element {
-  return !post ? (
-    <p>Carregando...</p>
-  ) : (
+  const router = useRouter();
+  if (router.isFallback) {
+    return (
+      <main className={styles.container}>
+        <h1 className={styles.title}>Carregando...</h1>
+      </main>
+    );
+  }
+  return (
     <>
       <div className={styles.banner}>
         <img src={post.data.banner.url} alt={post.data.title} />
@@ -96,20 +101,26 @@ export default function Post({ post }: PostProps): JSX.Element {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async params => {
+  const prismic = getPrismicClient({});
+  const response = await prismic.getByType('posts');
+  const paths = response.results.map(doc => ({
+    params: {
+      slug: prismicH.asLink(doc, post => post.uid),
+    },
+  }));
   return {
-    paths: [],
-    fallback: 'blocking',
+    paths,
+    fallback: true,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug } = params;
   const prismic = getPrismicClient({});
-  const post = await prismic.getByUID('posts', String(slug));
-  // console.log(post);
+  const post = await prismic.getByUID('posts', String(params.slug));
+  // console.log(JSON.stringify(post.data, null, 2));
   return {
     props: { post },
-    // redirect: 60 * 30,
+    redirect: 60 * 30,
   };
 };
