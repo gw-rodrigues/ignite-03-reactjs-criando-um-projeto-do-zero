@@ -32,9 +32,21 @@
       margin: 3rem 0;
     }
 
+    p {
+      & + p {
+        margin-top: 2rem;
+      }
+    }
+    ul {
+      margin: 2rem 0;
+      li {
+        &+li {margin-top: 2rem;}
+      }
+    }
+
     b,
     strong {
-        font-weight: 700;
+      font-weight: 700;
     }
 
     a {
