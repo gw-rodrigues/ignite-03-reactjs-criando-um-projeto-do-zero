@@ -1,9 +1,8 @@
 import * as prismic from '@prismicio/client';
-import { HttpRequestLike } from '@prismicio/client';
 import { enableAutoPreviews } from '@prismicio/next';
 
 export interface PrismicConfig {
-  req?: HttpRequestLike;
+  req?: prismic.HttpRequestLike;
 }
 
 export function getPrismicClient(config: PrismicConfig): prismic.Client {
