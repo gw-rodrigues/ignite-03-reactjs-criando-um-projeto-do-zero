@@ -1485,7 +1485,7 @@
 
 "@prismicio/client@^6.5.1":
   version "6.5.1"
-  resolved "https://registry.npmjs.org/@prismicio/client/-/client-6.5.1.tgz"
+  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.5.1.tgz#cf1da0d41579b18ab88684cf4146487cc340fc66"
   integrity sha512-SrluBNcTQ34UZI1oa+DLTWohaE8U2BU2QRpjZ9GOYa9Kty1RqWxFxr+qUTk7LS0QSbmVPEq1AngL5IR2HFZw2A==
   dependencies:
     "@prismicio/helpers" "^2.3.0"
@@ -1531,12 +1531,12 @@
     "@prismicio/helpers" "^2.3.0"
     "@prismicio/richtext" "^2.0.1"
 
-"@prismicio/react@^2.4.1":
-  version "2.4.1"
-  resolved "https://registry.npmjs.org/@prismicio/react/-/react-2.4.1.tgz"
-  integrity sha512-t0uYiyGxo8basQjcsMvgGpyZICw/XgiUIXyx5dERHN52TbGo5zOpZht8ThBuO0nppQMgFzsrvBczJJquJL6yOw==
+"@prismicio/react@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@prismicio/react/-/react-2.4.2.tgz#581a16f1b682e530fe99a7caad3f47353bd527b8"
+  integrity sha512-KyCZBdJosE93S7sl+Z//eDdbT7vYNGNZ60rOs1VETbDXJtJhh7ymSZul5cvb8MrSrH8yn9DiR4rGVVXLobnHSA==
   dependencies:
-    "@prismicio/helpers" "^2.3.0"
+    "@prismicio/helpers" "^2.3.1"
     "@prismicio/richtext" "^2.0.1"
 
 "@prismicio/richtext@^1.1.0":
@@ -1569,7 +1569,7 @@
 
 "@prismicio/slice-simulator-react@^0.2.2":
   version "0.2.2"
-  resolved "https://registry.npmjs.org/@prismicio/slice-simulator-react/-/slice-simulator-react-0.2.2.tgz"
+  resolved "https://registry.yarnpkg.com/@prismicio/slice-simulator-react/-/slice-simulator-react-0.2.2.tgz#e12602def4c23c324a0a9f39c0ec3dbbd06a2681"
   integrity sha512-GfAP4nR01OhsahrNOhc58L0sVDcieU5AWEuuiRN55txQjKgaAl5GVtn0V6Pz4albnY4KKvLlQIffcgy2W+L9TQ==
   dependencies:
     "@prismicio/slice-simulator-core" "^0.2.1"
@@ -8619,7 +8619,7 @@ slice-ansi@^4.0.0:
 
 slice-machine-ui@^0.3.8:
   version "0.3.8"
-  resolved "https://registry.npmjs.org/slice-machine-ui/-/slice-machine-ui-0.3.8.tgz"
+  resolved "https://registry.yarnpkg.com/slice-machine-ui/-/slice-machine-ui-0.3.8.tgz#5d9b8fd12c1a3d1279f52dd31a865d0b107a377a"
   integrity sha512-KV+x9+afZ20F4jc/kHMFlyZCV94OBGzf9QoH2RpkABdHcOW3okULmf8PET7lsshXlOg3VvrnYwmmudvIQHsZgg==
   dependencies:
     "@babel/register" "^7.17.7"

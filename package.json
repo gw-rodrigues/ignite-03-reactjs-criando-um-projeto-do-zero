@@ -14,7 +14,7 @@
     "@prismicio/client": "^6.5.1",
     "@prismicio/helpers": "^2.3.1",
     "@prismicio/next": "^0.1.2",
-    "@prismicio/react": "^2.4.1",
+    "@prismicio/react": "^2.4.2",
     "@prismicio/slice-simulator-react": "^0.2.2",
     "@prismicio/types": "^0.1.27",
     "axios": "^0.27.2",
