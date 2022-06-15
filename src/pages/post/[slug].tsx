@@ -2,9 +2,11 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { RichText } from 'prismic-dom';
+import Link from 'next/link';
 import { FiCalendar, FiUser, FiClock } from 'react-icons/fi';
 import * as prismicH from '@prismicio/helpers';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { getPrismicClient } from '../../services/prismic';
 
 import commonStyles from '../../styles/common.module.scss';
@@ -27,11 +29,22 @@ interface Post {
   };
 }
 
-interface PostProps {
-  post: Post;
+interface PostNav {
+  title: string;
+  slug: string;
 }
 
-export default function Post({ post }: PostProps): JSX.Element {
+interface PostProps {
+  post: Post;
+  prev_page: PostNav;
+  next_page: PostNav;
+}
+
+export default function Post({
+  post,
+  prev_page,
+  next_page,
+}: PostProps): JSX.Element {
   const router = useRouter();
   if (router.isFallback) {
     return (
@@ -96,6 +109,25 @@ export default function Post({ post }: PostProps): JSX.Element {
             );
           })}
         </article>
+        <hr />
+        <section className={styles.postNav}>
+          <div>
+            <p>- Como utilizar Hooks</p>
+            <Link href="/post/como-utilizar-hooks">
+              <button type="button">
+                <p>Post anterior</p>
+              </button>
+            </Link>
+          </div>
+          <div>
+            <p>- Criando um app CRA do zero</p>
+            <Link href="/post/como-utilizar-hooks">
+              <button type="button">
+                <p>Proximo post</p>
+              </button>
+            </Link>
+          </div>
+        </section>
       </main>
     </>
   );
@@ -104,6 +136,12 @@ export default function Post({ post }: PostProps): JSX.Element {
 export const getStaticPaths: GetStaticPaths = async params => {
   const prismic = getPrismicClient({});
   const response = await prismic.getByType('posts');
+  if (!response) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
+  }
   const paths = response.results.map(doc => ({
     params: {
       slug: prismicH.asLink(doc, post => post.uid),
@@ -117,10 +155,13 @@ export const getStaticPaths: GetStaticPaths = async params => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const prismic = getPrismicClient({});
-  const post = await prismic.getByUID('posts', String(params.slug));
-  // console.log(JSON.stringify(post.data, null, 2));
+  const post = await prismic.getByUID('posts', String(params.slug), {
+    after: '1',
+  });
   return {
-    props: { post },
+    props: {
+      post,
+    },
     redirect: 60 * 30,
   };
 };

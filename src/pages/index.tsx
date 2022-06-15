@@ -120,8 +120,13 @@ export default function Posts({
 export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
   const response = await prismic.getByType('posts', {
+    orderings: {
+      field: 'document.first_publication_date',
+      direction: 'desc',
+    },
     pageSize: 1,
   });
+  // console.log(JSON.stringify(response.results[0].data, null, 2));
   return {
     props: {
       postsPagination: {
