@@ -40,7 +40,9 @@
     ul {
       margin: 2rem 0;
       li {
-        &+li {margin-top: 2rem;}
+        & + li {
+          margin-top: 2rem;
+        }
       }
     }
 
@@ -55,6 +57,43 @@
 
       &:hover {
         filter: brightness(0.7);
+      }
+    }
+  }
+
+  hr {
+    margin: 4rem 0;
+    border: 1px solid var(--gray-200);
+    opacity: .1;
+  }
+
+  .postNav {
+    display: flex;
+
+    div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      & + div {
+        align-items: flex-end;
+      }
+
+      p {
+        letter-spacing: -0.5px;
+      }
+
+      button {
+        border: 0;
+        background: none;
+        margin-top: .3rem;
+        color: var(--pink-500);
+        transition: filter 0.2s;
+    
+        &:hover {
+          filter: brightness(0.7);
+        }
       }
     }
   }
